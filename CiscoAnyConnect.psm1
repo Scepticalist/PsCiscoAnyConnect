@@ -222,15 +222,14 @@ Function Connect-AnyConnect() {
             Disconnect-AnyConnect -Verbose:$Verbose
         }
 
-    # First Stop any VPN cli and ui
-    # There must be only one "client" running when connecting
+    # Stop any running client
         Get-Process | Where-Object ProcessName -match 'vpn(ui|cli)' | ForEach-Object {
-            If (! $_.HasExited) {
+            If (-Not $_.HasExited) {
                 Write-Verbose "Stopping process $($_.Name) (pid: $($_.Id))"
                 Stop-Process $_.Id
             }
             Else {
-                Write-Verbose "Process $($_.Name) is exiting (pid: $($_.Id))"
+                Write-Verbose "Process $($_.Name) exiting... (pid: $($_.Id))"
             }
         }
         Write-Host "`nStarting AnyConnect to $ProfileURL as $User`n"
