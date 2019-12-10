@@ -14,7 +14,7 @@ Function Get-AnyConnectInfo() {
             Get information about the current Cisco AnyConnect connections status, install path
             profiles or version and returns the result as an object.
 
-        .PARAMETER BinaryPaths
+        .PARAMETER BinaryPath
             Current install paths for command line and gui executables. Returns an object,
             with PathCLI and PathGUI properties 
             
